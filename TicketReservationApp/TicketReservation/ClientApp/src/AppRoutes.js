@@ -5,9 +5,12 @@ import CreateTraveller from "./components/CreateTraveller";
 import Dashboard from "./components/Dashboard";
 import EditBackOfficer from "./components/EditBackOfficer";
 import EditTraveller from "./components/EditTraveller";
+import TicketBooking from "./components/TicketBooking";
+import TicketBookingManagement from "./components/TicketBookingManagement";
 import Travellers from "./components/Travellers";
 import UpdateStatusManagement from "./components/UpdateStatusManagement";
 import UpdateTravellerStatus from "./components/UpdateTravellerStatus";
+
 
 
 const AppRoutes = [
@@ -50,6 +53,14 @@ const AppRoutes = [
   {
     path: "/update-traveller-status",
     element: <UpdateTravellerStatus />,
+  },
+  {
+    path: "/ticket-booking-management",
+    element: <TicketBookingManagement />,
+  },
+  {
+    path: "/ticket-booking",
+    element: <TicketBooking />,
   },
 ];
 
