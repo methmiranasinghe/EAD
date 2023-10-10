@@ -8,7 +8,11 @@ const context =  [
   "/api/traveller",
   "api/traveller",
   "/api/backofficer",
-  "api/backofficer"
+    "api/backofficer",
+    "api/booking",
+    "/api/booking",
+  "api/test",
+  "/api/test"
 ];
 
 module.exports = function(app) {

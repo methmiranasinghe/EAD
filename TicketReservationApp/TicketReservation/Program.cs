@@ -1,3 +1,4 @@
+using TicketReservation.Controllers;
 using TicketReservation.Data;
 using TicketReservation.Services;
 
@@ -8,6 +9,12 @@ builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("C
 
 builder.Services.AddSingleton<TravellerServices>();
 builder.Services.AddSingleton<BackofficerServices>();
+builder.Services.AddSingleton<BookingService>();
+
+builder.Services.AddControllers();
+
+
+
 
 builder.Services.AddControllersWithViews();
 
