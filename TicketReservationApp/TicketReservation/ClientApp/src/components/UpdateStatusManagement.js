@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit} from "@fortawesome/free-solid-svg-icons";
 
 export default function UpdateStatusManagement() {
+  //Update Status Management
   const [travellers, setTravellers] = useState([]);
 
 

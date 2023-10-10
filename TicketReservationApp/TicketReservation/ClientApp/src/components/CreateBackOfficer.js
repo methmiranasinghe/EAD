@@ -12,6 +12,7 @@ const entry = {
 };
 
 export default function CreateBackOfficer(props) {
+  //Register a new Backofficer
    const addNewBackOfficer = async () => {
     console.log("calling API")
      fetch("api/backofficer", {

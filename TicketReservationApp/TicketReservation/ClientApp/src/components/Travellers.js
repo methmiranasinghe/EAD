@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+//Manage Travellers
 export default function Travellers() {
 
   const [travellers, setTravellers] = useState([]);
   const [tid, setTid] = useState("");
 
+  //handle delete modal
   const handleModal = (hide)=>{
     const deleteModal = document.querySelector(".delete-modal");
     if (deleteModal){
@@ -17,10 +19,12 @@ export default function Travellers() {
       }
     }
   }
+  //open the delete modal
   const openDeleteModal = (id)=>{
     setTid(id)
     handleModal(false);
   }
+  //delete traveller
   const deleteTraveller = ()=>{
 
     fetch("api/traveller/" + tid, {
