@@ -1,5 +1,7 @@
-﻿namespace TicketReservation.Data
+﻿
+namespace TicketReservation.Data
 {
+    //Database settings defined
     public class DatabaseSettings
     {
         public string CollectionName1 { get; set; }

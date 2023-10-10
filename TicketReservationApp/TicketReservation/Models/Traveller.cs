@@ -3,6 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace TicketReservation.Models
 {
+    //Traveller model
     [BsonIgnoreExtraElements]
     public class Traveller
     {
