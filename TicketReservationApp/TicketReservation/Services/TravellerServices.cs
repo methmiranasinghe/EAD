@@ -5,8 +5,10 @@ using TicketReservation.Models;
 
 namespace TicketReservation.Services
 {
+    //Services of Traveller
     public class TravellerServices
     {
+        
         private readonly IMongoCollection<Traveller> _travellercollection;
 
         public TravellerServices(IOptions<DatabaseSettings> settings)

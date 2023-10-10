@@ -5,6 +5,7 @@ export default function BackOfficers() {
   const [backofficers, setBackOfficers] = useState([]);
   const [bkid, setBkid] = useState("");
 
+  //handle the delete modal
   const handleModal = (hide) => {
     const deleteModal = document.querySelector(".delete-modal");
     if (deleteModal) {
@@ -15,10 +16,13 @@ export default function BackOfficers() {
       }
     }
   };
+  //open the delete modal
   const openDeleteModal = (id) => {
     setBkid(id);
     handleModal(false);
   };
+  
+  //delete backofficer
   const deleteBackofficer = () => {
     fetch("api/backofficer/" + bkid, {
       method: "DELETE",

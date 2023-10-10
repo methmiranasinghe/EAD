@@ -12,9 +12,9 @@ const entry = {
 export default function EditBackOfficer(props) {
   const [data, setData] = useState({});
   const [gender, setGender] = useState(0);
- 
-  const [tid, setTid] = useState("");
 
+  const [tid, setTid] = useState("");
+  //Update Backofficer
   const updateBackOfficer = () => {
     //console.log( "The Updated Travller is", entry);
     fetch("api/backofficer/" + tid, {
@@ -39,8 +39,6 @@ export default function EditBackOfficer(props) {
       v_ = Number(v_);
       setGender(v_);
     }
-
-   
 
     entry[name_] = v_;
   };
@@ -136,20 +134,6 @@ export default function EditBackOfficer(props) {
             <option value={0}>Female</option>
           </select>
         </div>
-        {/* <div>
-          <label htmlFor="status">Status</label> 
-          <select
-            name="isActive"
-            id="status"
-            value={isActive}
-            onChange={newData}
-            disabled
-            hidden={true}
-          >
-            <option value={false}>InActive</option>
-            <option value={true}>Active</option>
-          </select>
-        </div> */}
         <div className="mb-3">
           <label htmlFor="contactno" className="form-label">
             Contact No

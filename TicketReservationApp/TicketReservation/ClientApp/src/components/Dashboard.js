@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   return (
+    //Main Dashboard
     <div className="container mt-5 text-center">
       <h1>Welcome to the Dashboard</h1>
       <div className="mt-4">

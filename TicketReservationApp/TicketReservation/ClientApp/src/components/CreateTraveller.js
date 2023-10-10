@@ -12,6 +12,7 @@ const entry = {
 };
 
 export default function CreateTraveller(props) {
+  //Register a new Traveller
   const addNewTraveller = async () => {
     fetch("api/traveller", {
       method: "POST",

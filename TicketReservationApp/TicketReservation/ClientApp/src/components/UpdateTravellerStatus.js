@@ -10,11 +10,13 @@ const entry = {
   status: false,
 };
 export default function UpdateTravellerStatus(props) {
+  
   const [data, setData] = useState({});
 
   const [isActive, setActive] = useState(false);
   const [tid, setTid] = useState("");
 
+  //Update traveller account status
   const updateTraveller = () => {
     console.log( "The Updated Traveller is", entry);
     fetch("api/traveller/" + tid, {

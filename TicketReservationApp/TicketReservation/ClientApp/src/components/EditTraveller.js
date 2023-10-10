@@ -15,7 +15,7 @@ export default function EditTraveller(props) {
   const [isActive, setIsActive] = useState(false);
   const [tid, setTid] = useState("");
 
-
+//Update Traveller
   const updateTraveller = () => {
     //console.log( "The Updated Travller is", entry);
     fetch( "api/traveller/" +tid, {
