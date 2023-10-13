@@ -10,6 +10,7 @@ builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("C
 builder.Services.AddSingleton<TravellerServices>();
 builder.Services.AddSingleton<BackofficerServices>();
 builder.Services.AddSingleton<BookingService>();
+builder.Services.AddScoped<IReservationService, ReservationService>();
 
 builder.Services.AddControllers();
 
