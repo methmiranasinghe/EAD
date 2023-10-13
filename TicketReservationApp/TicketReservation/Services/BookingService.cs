@@ -7,8 +7,10 @@ namespace TicketReservation.Services
 {
     public class BookingService
     {
+        //MongoDB instance
         private readonly IMongoCollection<Booking> _bookingCollection;
 
+        //set mongoURL
         public BookingService(IOptions<DatabaseSettings> settings)
         {
             var mongoClient = new MongoClient(settings.Value.Connection);
