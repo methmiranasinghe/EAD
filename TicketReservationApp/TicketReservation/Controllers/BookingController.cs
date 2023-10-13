@@ -7,6 +7,7 @@ using TicketReservation.Services;
 
 namespace TicketReservation.Controllers
 {
+//Route for booking apis
     [Route("api/booking")]
     [ApiController]
     public class BookingController : ControllerBase
