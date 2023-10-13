@@ -33,10 +33,23 @@ const BackOfficerDashboard = () => {
             <div className="card-body">
               <h5 className="card-title">Train Management</h5>
               <p className="card-text">
-                Manage training sessions and schedules.
+                Manage trains.
               </p>
               <a href="/train-management" className="btn btn-primary">
                 Train Management
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-4 mt-4">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Schedule Management</h5>
+              <p className="card-text">
+                Manage train schedules.
+              </p>
+              <a href="/schedule-management" className="btn btn-primary">
+                Schedule Management
               </a>
             </div>
           </div>
