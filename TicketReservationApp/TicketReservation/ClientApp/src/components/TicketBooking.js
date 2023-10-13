@@ -6,8 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 function TicketBooking() {
-    // const [travellers, setTravellers] = useState([]);
-    // const [tid, setTid] = useState("");
+    
     const [startDate, setStartDate] = useState(new Date());
 
     const [showModal, setShowModal] = useState(false);
