@@ -17,6 +17,8 @@ const context =  [
   "/api/user",
   "api/train",
   "/api/train",
+  "api/schedule",
+  "/api/schedule",
 ];
 
 module.exports = function(app) {
