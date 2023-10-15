@@ -1,5 +1,6 @@
-﻿using MongoDB.Driver;
-using TravelerAppService.Context;
+﻿using Microsoft.Extensions.Options;
+using MongoDB.Driver;
+using TicketReservation.Data;
 using TravelerAppService.Models;
 using TravelerAppWebService.Services.Interfaces;
 
@@ -9,9 +10,11 @@ namespace TravelerAppService.Services
     {
         private readonly IMongoCollection<Reservation> _reservationCollection;
 
-        public ReservationService(MongoDBContext dbContext)
+        public ReservationService(IOptions<DatabaseSettings> settings)
         {
-            _reservationCollection = dbContext.GetCollection<Reservation>("reservation");
+            var mongoClient = new MongoClient(settings.Value.Connection);
+            var mongoDb = mongoClient.GetDatabase(settings.Value.DatabaseName);
+            _reservationCollection = mongoDb.GetCollection<Reservation>("reservation");
         }
 
         //create

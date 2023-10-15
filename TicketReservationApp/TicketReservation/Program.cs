@@ -1,6 +1,7 @@
 using TicketReservation.Controllers;
 using TicketReservation.Data;
 using TicketReservation.Services;
+using TravelerAppService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,8 @@ builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("C
 builder.Services.AddSingleton<TravellerServices>();
 builder.Services.AddSingleton<BackofficerServices>();
 builder.Services.AddSingleton<BookingService>();
-builder.Services.AddScoped<IReservationService, ReservationService>();
+builder.Services.AddSingleton<ReservationService>();
+builder.Services.AddSingleton<UserService>();
 
 builder.Services.AddControllers();
 

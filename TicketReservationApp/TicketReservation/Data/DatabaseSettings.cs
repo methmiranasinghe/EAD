@@ -8,6 +8,8 @@ namespace TicketReservation.Data
 
         public string CollectionName2 { get; set; }
         public string CollectionName3 { get; set; }
+        public string CollectionName4 { get; set; }
+        public string CollectionName5 { get; set; }
 
         public string DatabaseName { get; set; }
 

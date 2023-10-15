@@ -12,7 +12,9 @@ const context =  [
     "api/booking",
     "/api/booking",
   "api/test",
-  "/api/test"
+  "/api/test",
+  "api/user",
+  "/api/user",
 ];
 
 module.exports = function(app) {
