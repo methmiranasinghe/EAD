@@ -32,5 +32,9 @@ namespace TicketReservation.Models
         [BsonElement("userId")]
         [BsonRepresentation(BsonType.ObjectId)]
         public string UserId { get; set; } = ObjectId.Empty.ToString();
+
+        [BsonElement("scheduleId")]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string ScheduleId { get; set; } = ObjectId.Empty.ToString();
     }
 }
