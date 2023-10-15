@@ -33,6 +33,8 @@ namespace TicketReservation.Models
         [BsonElement("status")]
         public bool Status { get; set; }
 
+        [BsonElement("password")]
+        public string Password { get; set; } = "Traveller Password";
 
 
     }
