@@ -15,6 +15,7 @@ builder.Services.AddSingleton<BookingService>();
 builder.Services.AddSingleton<UserService>();
 builder.Services.AddSingleton<TrainService>();
 builder.Services.AddSingleton<ScheduleService>();
+builder.Services.AddSingleton<TrainScheduleService>();
 
 builder.Services.AddControllers();
 
