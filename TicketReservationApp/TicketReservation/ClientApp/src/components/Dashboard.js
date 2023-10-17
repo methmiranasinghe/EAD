@@ -14,12 +14,17 @@ const Dashboard = () => {
               to="/new-backofficer"
               className="btn btn-primary btn-lg btn-block"
             >
-              Back Office Register
+              Back Office Register test
             </Link>
           </div>
           <div className="col-md-3">
             <Link to="/travellers" className="btn btn-success btn-lg btn-block">
               Traveller Register
+            </Link>
+          </div>
+          <div className="col-md-3">
+            <Link to="/ticket-booking-management" className="btn btn-success btn-lg btn-block">
+              Travel Agent
             </Link>
           </div>
         </div>

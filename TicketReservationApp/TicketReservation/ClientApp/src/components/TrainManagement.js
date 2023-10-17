@@ -1,12 +1,36 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { trains } from '../data/data';
 import Table from '../shared/Table';
+import apiCall from '../utils/apiCall';
 
 function TrainManagement() {
 
     const [showModal, setShowModal] = useState(false);
     const [name, setName] = useState("");
-    const [data, setData] = useState(trains);
+    const [data, setData] = useState("");
+    const [initialData, setInitData]=useState([]);
+
+
+    //
+const loadTrains = async () => {
+        try {
+            const response = await apiCall('get', "api/trains");
+            if(response){
+                console.log("loaded:::::",response)
+                setData(response)
+                setInitData(response)
+            }else{
+                // setData([])
+            }
+        } catch (error) {
+            console.log('error ',error)
+        }
+    }
+      //
+
+    useEffect(() => {
+        loadTrains();
+    },[])
 
     const toggleModal = () => {
         setShowModal(!showModal);
@@ -19,7 +43,7 @@ function TrainManagement() {
             );
             setData(filteredData);
         }else{
-            setData(trains);
+            setData(initialData);
         }
       };
     
@@ -30,13 +54,47 @@ function TrainManagement() {
       const handleSubmit = () => {
         if(name === "") return alert("Name is required");
         const newTrain = {
-            id: Math.floor(Math.random() * 300) + 1,
-            name:name,
-            dateCreated: new Date()
+            _id: "",
+            name:name
         };
-        setData([...data , newTrain]);
+        setData([...data,newTrain]);
+        submitTrain(newTrain);
         setShowModal(false);
       };
+
+
+      //
+const submitTrain = async (newTrain) => {
+        try {
+            const response = await apiCall('post', "api/trains", newTrain);
+            if(response){
+                console.log("added:::::")
+                // setData();
+            }else{
+                // setData([])
+            }
+        } catch (error) {
+            console.log('error ',error)
+        }
+    }
+      //
+
+            //
+
+
+
+      const handleDelete=async (id)=>{
+        try {
+            await apiCall('delete', "api/trains/"+id);
+      
+                console.log("deleted:::::")
+                loadTrains();
+            
+        } catch (error) {
+            console.log('error ',error)
+        }
+    }
+      
 
 
     const renderModal = () => {
@@ -106,10 +164,10 @@ function TrainManagement() {
     <div
       style={{ flexDirection: "row", alignItems: "center", marginBottom: 25 }}
     >
-      <h1 style={{ display: "inline" }}>Train Management</h1>
+      <h1 style={{ display: "block" }}>Train Management</h1>
 
       <input
-        style={{ marginLeft: 10, width: 500, padding: 10 }}
+        style={{width: 500, padding: 10 }}
         onChange={handleSearch}
         type="search"
         placeholder="Search"
@@ -128,7 +186,34 @@ function TrainManagement() {
 
     {renderModal()}
 
-    <Table columns={columns} rows={data}  rowAccessor={rowAccessor}/>
+    <table className="table table-bordered">
+                <thead className="thead-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+        
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        data?.length &&
+                        data?.map(item => {
+                            console.log('table row data ',item)
+                            return(
+                <tr key={item._id}>
+                       
+                        <td>{item.name}</td>
+                        
+                        <td style={{width:"20%"}}>
+                        <button type="button" class="btn btn-danger btn-sm" style={{marginLeft:10}} onClick={() => handleDelete(item._id)} >Delete</button>
+                        </td>
+                    </tr>
+
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
     </main>
   )
 }

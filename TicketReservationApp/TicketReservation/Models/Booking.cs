@@ -18,8 +18,9 @@ namespace TicketReservation.Models
         public string Destination { get; set; } = "Destination";
 
         [BsonElement("trainId")]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string TrainId { get; set; } = ObjectId.Empty.ToString();
+        public TrainData? TrainId { get; set; }
+        //[BsonRepresentation(BsonType.ObjectId)]
+        //public string TrainId { get; set; } = ObjectId.Empty.ToString();
 
         [BsonElement("reservationDate")]
         [BsonRepresentation(BsonType.DateTime)]
@@ -37,4 +38,5 @@ namespace TicketReservation.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string ScheduleId { get; set; } = ObjectId.Empty.ToString();
     }
+
 }

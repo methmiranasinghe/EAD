@@ -4,6 +4,7 @@ import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { trains, travellers } from "../data/data";
 import { useNavigate } from "react-router-dom";
 import Table from "../shared/Table";
+import apiCall from "../utils/apiCall";
 
 function TicketBookingManagement(props) {
 
@@ -41,10 +42,30 @@ function TicketBookingManagement(props) {
     // alert(user.id);
     navigate("/ticket-booking", {
       state: {
-        id: user.id,
+        id: user._id,
+        name: user.firstName
       },
     });
   };
+
+
+  const loadUsers = async () => {
+    try {
+      const response = await apiCall('get', "/api/users");
+      if(response){
+        setData(response)
+      }else{
+        setData([])
+      }
+    } catch (error) {
+      console.log('api error ',error);
+    }
+  };
+
+
+  useEffect(() => {
+    loadUsers()
+  },[])
 
   const handleSubmit = () => {
     if(firstName === "") return alert("First Name is required!");
@@ -191,11 +212,11 @@ function TicketBookingManagement(props) {
       <div
         style={{ flexDirection: "row", alignItems: "center", marginBottom: 25 }}
       >
-        <h1 style={{ display: "inline" }}>Traveller Management</h1>
+        <h1 style={{ display: "block" }}>User Management</h1>
 
         {/* <input placeholder="Search" style={{borderWidth:1 , padding: 10 , marginLeft: 10}} /> */}
         <input
-          style={{ marginLeft: 10, width: 500, padding: 10 }}
+          style={{ width: 500, padding: 10 }}
           onChange={handleSearch}
           type="search"
           placeholder="Search"
@@ -221,7 +242,7 @@ function TicketBookingManagement(props) {
 
 export default TicketBookingManagement;
 
-const columns = ["id", "First Name", "Last Name","NIC" ,"Address","Contact"];
+const columns = [ "First Name", "Last Name","NIC" ,"Address","Contact"];
 
 
-const rowAccessor = ["id","firstName","lastName",  "nic","address","contact"]
+const rowAccessor = ["firstName","lastName",  "nic","address","contact"]
