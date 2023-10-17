@@ -5,13 +5,11 @@ const entry = {
   firstName: "",
   lastName: "",
   email: "",
-  gender: 0,
   contactNo: "",
   status: false,
 };
 export default function EditTraveller(props) {
   const [data, setData] = useState({});
-  const [gender, setGender] = useState( 0 );
   const [isActive, setIsActive] = useState(false);
   const [tid, setTid] = useState("");
 
@@ -36,11 +34,6 @@ export default function EditTraveller(props) {
     const name_ = e.target.name;
     let v_ = e.target.value;
 
-    if (name_ === "gender") {
-      v_ = Number(v_);
-      setGender(v_);
-    }
-
     if (name_ === "isActive") {
       v_ = v_ === "true";
       setIsActive(v_);
@@ -60,7 +53,6 @@ export default function EditTraveller(props) {
         .then((r) => r.json())
         .then((d) => {
           console.log("Traveller for update", d);
-          setGender(d.gender);
           setIsActive(d.isActive);
           setData(d);
           Object.assign(entry,d)
@@ -126,21 +118,6 @@ export default function EditTraveller(props) {
           />
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="gender" className="form-label">
-            Gender
-          </label>
-          <select
-            name="gender"
-            id="gender"
-            className="form-select"
-            value={gender}
-            onChange={newData}
-          >
-            <option value={1}>Male</option>
-            <option value={0}>Female</option>
-          </select>
-        </div>
         <div>
           {/* <label htmlFor="status">Status</label> */}
           <select

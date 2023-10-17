@@ -6,7 +6,6 @@ const entry = {
   firstName: "",
   lastName: "",
   email: "",
-  gender: 0,
   contactno: "",
  
 };
@@ -14,30 +13,28 @@ const entry = {
 export default function CreateBackOfficer(props) {
   //Register a new Backofficer
    const addNewBackOfficer = async () => {
-    console.log("calling API")
-     fetch("api/backofficer", {
-       method: "POST",
-       body: JSON.stringify(entry),
-       headers: {
-         "content-type": "application/json",
-       },
-     })
-       .then((r) => {
-         console.log("Response from backend for adding new backofficer:", r);
-         window.location = "/backofficer-dashboard";
+     if (entry.nic === "" || entry.firstName === "" || entry.lastName === "" || entry.email === "" || entry.contactno === "" ) 
+     {
+       alert("Please input all required data");
+     } else {
+       fetch("api/backofficer", {
+         method: "POST",
+         body: JSON.stringify(entry),
+         headers: {
+           "content-type": "application/json",
+         },
        })
-       .catch((e) => console.log("Error adding a new backofficer"));
+         .then((r) => {
+           console.log("Response from backend for adding new backofficer:", r);
+           window.location = "/backofficer-dashboard";
+         })
+         .catch((e) => console.log("Error adding a new backofficer"));
+     }
    };
 
   const newData = (e) => {
     const name_ = e.target.name;
-    let v_ = e.target.value;
-
-    if (name_ === "gender") {
-      v_ = Number(v_);
-    }
-
-    
+    let v_ = e.target.value; 
 
     entry[name_] = v_;
 
@@ -90,14 +87,6 @@ export default function CreateBackOfficer(props) {
         </div>
 
         <div className="mb-3 d-flex align-items-center">
-          <label className="form-label me-2">Gender: </label>
-          <select name="gender" className="form-select" onChange={newData}>
-            <option value={1}>Male</option>
-            <option value={0}>Female</option>
-          </select>
-        </div>
-
-        <div className="mb-3 d-flex align-items-center">
           <label className="form-label ">Contact No:</label>
           <input
             type="number"
@@ -106,9 +95,6 @@ export default function CreateBackOfficer(props) {
             onChange={newData}
           />
         </div>
-
-      
-
         <div className="d-flex justify-content-between">
           <button
             className="btn btn-secondary"

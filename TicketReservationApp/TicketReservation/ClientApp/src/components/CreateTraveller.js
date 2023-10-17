@@ -1,43 +1,59 @@
 import React from "react";
+const CryptoJS = require("crypto-js");
 
-const entry = {
-  id: "",
-  nic: "",
-  firstName: "",
-  lastName: "",
-  email: "",
-  gender: 0,
-  contactno: "",
-  status: false,
-};
 
 export default function CreateTraveller(props) {
   //Register a new Traveller
-  const addNewTraveller = async () => {
-    fetch("api/traveller", {
-      method: "POST",
-      body: JSON.stringify(entry),
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((r) => {
-        console.log("Response from backend for adding new traveller:", r);
-        window.location = "/travellers";
+  const [entry, setEntry] = useState({
+    id: "",
+    nic: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    contactno: "",
+    status: false,
+    password: "",
+  });
+  
+  const addNewTraveller = async (event) => {
+    event.preventDefault();
+    if (
+      entry.nic === "" ||
+      entry.firstName === "" ||
+      entry.lastName === "" ||
+      entry.email === "" ||
+      entry.contactno === "" ||
+      entry.password === ""
+    ) {
+      alert("Please input all required data");
+    } else {
+      fetch("api/traveller", {
+        method: "POST",
+        body: JSON.stringify(entry),
+        headers: {
+          "content-type": "application/json",
+        },
       })
-      .catch((e) => console.log("Error adding a new traveller"));
+        .then((r) => {
+          console.log("Response from backend for adding new traveller:", r);
+          window.location = "/travellers";
+        })
+        .catch((e) => console.log("Error adding a new traveller"));
+    }
   };
 
   const newData = (e) => {
     const name_ = e.target.name;
     let v_ = e.target.value;
 
-    if (name_ === "gender") {
-      v_ = Number(v_);
-    }
-
     if (name_ === "isActive") {
       v_ = v_ === "1";
+    }
+
+    if (name_ === "password") {
+      // Encrypt the password using CryptoJS and store it in the entry state
+      const encryptedPassword = CryptoJS.AES.encrypt(v_, "ASECRET").toString();
+      setEntry({ ...entry, [name_]: encryptedPassword });
     }
 
     entry[name_] = v_;
@@ -54,7 +70,7 @@ export default function CreateTraveller(props) {
           <label className="form-label me-4">NIC: </label>
           <input
             type="text"
-            className="form-control form-control-sm text-left" 
+            className="form-control form-control-sm text-left"
             name="nic"
             onChange={newData}
           />
@@ -75,7 +91,7 @@ export default function CreateTraveller(props) {
           <input
             type="text"
             name="lastName"
-            className="form-control form-control-sm text-left" 
+            className="form-control form-control-sm text-left"
             onChange={newData}
           />
         </div>
@@ -91,34 +107,24 @@ export default function CreateTraveller(props) {
         </div>
 
         <div className="mb-3 d-flex align-items-center">
-          <label className="form-label me-2">Gender: </label>
-          <select name="gender" className="form-select" onChange={newData}>
-            <option value={1}>Male</option>
-            <option value={0}>Female</option>
-          </select>
-        </div>
-
-        <div className="mb-3 d-flex align-items-center">
           <label className="form-label ">Contact No:</label>
           <input
             type="number"
             name="contactno"
-            className="form-control form-control-sm text-left" 
+            className="form-control form-control-sm text-left"
             onChange={newData}
           />
         </div>
 
         <div className="mb-3 d-flex align-items-center">
-          <label className="form-label me-4">Status:</label>
-          <select
-            name="isActive"
-            className="form-select"
+          <label className="form-label me-1">Password:</label>
+          <input
+            type="password"
+            name="password"
+            className="form-control form-control-sm text-left"
             onChange={newData}
-            disabled
-          >
-            <option value={0}>InActive</option>
-            <option value={1}>Active</option>
-          </select>
+            required
+          />
         </div>
 
         <div className="d-flex justify-content-between">

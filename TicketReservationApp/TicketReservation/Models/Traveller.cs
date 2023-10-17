@@ -24,9 +24,6 @@ namespace TicketReservation.Models
         [BsonElement("email")]
         public string Email { get; set; } = "Traveller Email";
 
-        [BsonElement("gender")]
-        public byte Gender { get; set; } = 1;
-
         [BsonElement("contactno")]
         public string ContactNo { get; set; } = "Traveller Contact No ";
 

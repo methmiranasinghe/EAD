@@ -5,13 +5,12 @@ const entry = {
   firstName: "",
   lastName: "",
   email: "",
-  gender: 0,
   contactNo: "",
  
 };
 export default function EditBackOfficer(props) {
   const [data, setData] = useState({});
-  const [gender, setGender] = useState(0);
+  
 
   const [tid, setTid] = useState("");
   //Update Backofficer
@@ -35,11 +34,6 @@ export default function EditBackOfficer(props) {
     const name_ = e.target.name;
     let v_ = e.target.value;
 
-    if (name_ === "gender") {
-      v_ = Number(v_);
-      setGender(v_);
-    }
-
     entry[name_] = v_;
   };
 
@@ -54,7 +48,6 @@ export default function EditBackOfficer(props) {
         .then((r) => r.json())
         .then((d) => {
           console.log("Backofficer for update", d);
-          setGender(d.gender);
           setData(d);
           Object.assign(entry, d);
         })
@@ -117,22 +110,6 @@ export default function EditBackOfficer(props) {
             defaultValue={data.email}
             onChange={newData}
           />
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="gender" className="form-label">
-            Gender
-          </label>
-          <select
-            name="gender"
-            id="gender"
-            className="form-select"
-            value={gender}
-            onChange={newData}
-          >
-            <option value={1}>Male</option>
-            <option value={0}>Female</option>
-          </select>
         </div>
         <div className="mb-3">
           <label htmlFor="contactno" className="form-label">

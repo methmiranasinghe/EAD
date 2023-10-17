@@ -60,7 +60,6 @@ export default function Travellers() {
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
-            <th>Gender</th>
             <th>Contact No</th>
             <th>Status</th>
             <th>Actions</th>
@@ -80,7 +79,6 @@ export default function Travellers() {
                 <td>{traveller.firstName}</td>
                 <td>{traveller.lastName}</td>
                 <td>{traveller.email}</td>
-                <td>{traveller.gender === 0 ? "Female" : "Male"}</td>
                 <td>{traveller.contactNo}</td>
                 <td
                   style={{
