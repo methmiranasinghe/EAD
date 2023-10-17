@@ -58,7 +58,6 @@ export default function BackOfficers() {
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
-            <th>Gender</th>
             <th>Contact No</th>
             <th>Actions</th>
           </tr>
@@ -77,7 +76,6 @@ export default function BackOfficers() {
                 <td>{backofficer.firstName}</td>
                 <td>{backofficer.lastName}</td>
                 <td>{backofficer.email}</td>
-                <td>{backofficer.gender === 0 ? "Female" : "Male"}</td>
                 <td>{backofficer.contactNo}</td>
                 <td>
                   <a href={"/edit-backofficers?id=" + backofficer.id}>
