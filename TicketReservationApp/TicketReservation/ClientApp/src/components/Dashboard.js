@@ -18,7 +18,10 @@ const Dashboard = () => {
             </Link>
           </div>
           <div className="col-md-3">
-            <Link to="/travellers" className="btn btn-success btn-lg btn-block">
+            <Link
+              to="/new-traveller"
+              className="btn btn-success btn-lg btn-block"
+            >
               Traveller Register
             </Link>
           </div>
