@@ -106,9 +106,11 @@ function ScheduleManagement() {
         <div>
           {
             stops?.length > 0 ? 
-            stops.map((stp,i) => <div key={i}>
-              <p>{stp.station}</p>
-              <p>{new Date(stp.time).toLocaleTimeString()}</p>
+            stops.map((stp,i) => <div key={i} >
+              
+              <p style={{display:"inline-block"}}>{stp.station}</p>
+              <p style={{display:"inline-block", float:"right"}}>{new Date(stp.time).toLocaleTimeString()}</p>
+              
               </div>
               )
               : null

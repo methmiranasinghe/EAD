@@ -19,9 +19,6 @@ function TicketBookingManagement(props) {
 
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    setData(travellers);
-  }, []);
 
   const toggleModal = () => {
     setShowModal(!showModal);
