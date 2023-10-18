@@ -52,7 +52,9 @@ export default function Travellers() {
       <a className="btn btn-primary mb-3" href="/new-traveller">
         Create Traveller
       </a>
-
+      <a className="btn btn-primary mb-3" href="/ticket-booking-management">
+        Booking
+      </a>
       <table className="table table-bordered">
         <thead className="thead-dark">
           <tr>
@@ -114,7 +116,12 @@ export default function Travellers() {
           <h3>Delete Traveller</h3>
           <p>Are you sure you want to delete this traveller ?</p>
           <div className="row mt-20 justify-btw">
-            <div className="btn cancel" onClick={() =>{handleModal(true)}}>
+            <div
+              className="btn cancel"
+              onClick={() => {
+                handleModal(true);
+              }}
+            >
               Cancel
             </div>
             <div className="btn delete" onClick={deleteTraveller}>
@@ -123,7 +130,6 @@ export default function Travellers() {
           </div>
         </div>
       </section>
-      
     </main>
   );
 }
