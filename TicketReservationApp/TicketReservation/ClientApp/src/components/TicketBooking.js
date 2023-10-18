@@ -84,6 +84,20 @@ function TicketBooking() {
     //     setData(reservations);
     // },[])
 
+    function formatTimeWithAMPM(date) {
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+
+  // Convert to 12-hour time format
+  const formattedHours = hours % 12 || 12;
+
+  // Zero-padding for single-digit minutes
+  const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+
+  return `${formattedHours}:${formattedMinutes} ${ampm}`;
+}
+
 
     const handleModalOpen = () => {
         setShowModal(true);
@@ -128,8 +142,8 @@ function TicketBooking() {
                 origin,
                 destination,
                 trainId: {
-                    id: train.id,
-                    name: train.name
+                    id: train.train.id,
+                    name: train.train.name
                 },
                 reservationDate: startDate,
                 timestamp: new Date(),
@@ -181,7 +195,6 @@ function TicketBooking() {
 
     const getArrivalTime = obj => {
         const a = obj.stops.filter(item => item.station === origin)
-        console.log('a ',a);
         return a[0];
     }
 
@@ -231,7 +244,7 @@ function TicketBooking() {
                      <option value={""}>Select</option>
                      {
                         schedules.length ?
-                         schedules.map((item, i) => <option value={item._id} id={item._id} key={item._id}>{item.train?.name} {new Date(item.date).toLocaleDateString()} {getArrivalTime(item)?.time} </option>)
+                         schedules.map((item, i) => <option value={item._id} id={item._id} key={item._id}>{item.train?.name} {new Date(item.date).toLocaleDateString()} {formatTimeWithAMPM(new Date(getArrivalTime(item)?.time))} </option>)
                          : null
                      }
                  </select>
